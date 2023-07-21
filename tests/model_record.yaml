@@ -1,0 +1,27 @@
+record:
+  properties:
+    metadata:
+      properties:
+        title:
+          type: fulltext
+        status:
+          type: keyword
+  module:
+    qualified: model
+  permissions:
+    presets: [ 'everyone' ]
+#  package: thesis
+#  schema-server: 'local://'
+  use:
+  - invenio
+  draft: {}
+#files:
+#  use:
+#  - invenio_files
+#  properties:
+#    metadata:
+#      properties:
+#        title:
+#          type: fulltext
+#  package: thesis
+#  schema-server: 'local://'
