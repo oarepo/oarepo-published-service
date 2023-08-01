@@ -9,6 +9,13 @@ from oarepo_published_service.services import (
 
 @pytest.fixture(scope="module")
 def app_config(app_config):
+    app_config[
+        "RECORDS_REFRESOLVER_CLS"
+    ] = "invenio_records.resolver.InvenioRefResolver"
+    app_config[
+        "RECORDS_REFRESOLVER_STORE"
+    ] = "invenio_jsonschemas.proxies.current_refresolver_store"
+    
     app_config["OAREPO_PUBLISHED_SERVICE"] = PublishedService
     app_config["OAREPO_PUBLISHED_SERVICE_CONFIG"] = PublishedServiceConfig
 
