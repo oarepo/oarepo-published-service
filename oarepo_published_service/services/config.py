@@ -8,8 +8,8 @@ class PublishedServiceConfig:
     def __init__(self):
         self._drafts_config = RecordServiceConfig()
 
-    def __getattr__(self, name):
-        if hasattr(self, name):
+    def __getattr__(self, name: str) -> None:
+        if name in self.__dict__:
             return getattr(self, name)
         else:
             return getattr(self._drafts_config, name)
