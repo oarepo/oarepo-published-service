@@ -1,14 +1,14 @@
 import pytest
 from invenio_app.factory import create_api as _create_api
 
+from model.services.records.config import ModelServiceConfig
+from oarepo_published_service.services import (
+    PublishedService,
+    PublishedServiceConfig
+)
 
 @pytest.fixture(scope="module")
 def app_config(app_config):
-    from oarepo_published_service.services import (
-        PublishedService,
-        PublishedServiceConfig,
-    )
-
     app_config["OAREPO_PUBLISHED_SERVICE"] = PublishedService
     app_config["OAREPO_PUBLISHED_SERVICE_CONFIG"] = PublishedServiceConfig
 
@@ -23,9 +23,11 @@ def create_app(instance_path, entry_points):
 
 @pytest.fixture(scope="module")
 def published_service(app):
-    from oarepo_published_service.proxies import current_service
-
-    return current_service
+    return PublishedService(
+        config=PublishedServiceConfig(
+            proxied_drafts_config=ModelServiceConfig()
+        )
+    )
 
 
 @pytest.fixture(scope="session", autouse=True)

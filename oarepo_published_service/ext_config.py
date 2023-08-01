@@ -1,4 +1,0 @@
-from oarepo_published_service.services import PublishedService, PublishedServiceConfig
-
-OAREPO_PUBLISHED_SERVICE = PublishedService
-OAREPO_PUBLISHED_SERVICE_CONFIG = PublishedServiceConfig
