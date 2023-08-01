@@ -162,3 +162,5 @@ cython_debug/
 model
 .venv-builder
 .venv-tests
+
+.vscode
