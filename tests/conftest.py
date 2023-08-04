@@ -1,5 +1,7 @@
-import pytest
+from flask_principal import Identity
+from invenio_access.permissions import any_user, system_identity
 from invenio_app.factory import create_api as _create_api
+import pytest
 
 from model.services.records.config import ModelServiceConfig
 from oarepo_published_service.services import (
@@ -26,7 +28,6 @@ def app_config(app_config):
 def create_app(instance_path, entry_points):
     """Application factory fixture."""
     return _create_api
-
 
 @pytest.fixture(scope="module")
 def published_service(app):
