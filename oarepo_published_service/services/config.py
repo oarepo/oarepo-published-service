@@ -1,5 +1,5 @@
 from invenio_drafts_resources.services.records import RecordServiceConfig
-from oarepo_runtime.config.permissions_presets import OaiHarvesterPermissionPolicy
+from oarepo_runtime.services.config.permissions_presets import OaiHarvesterPermissionPolicy
 
 from oarepo_published_service.services.records.components.pid_register import PidRegisterComponent
 

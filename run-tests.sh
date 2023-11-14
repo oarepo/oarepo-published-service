@@ -2,6 +2,9 @@
 
 set -e
 
+OAREPO_VERSION=${OAREPO_VERSION:-11}
+OAREPO_VERSION_MAX=$((OAREPO_VERSION+1))
+
 if [ -d .venv-builder ] ; then
     rm -rf .venv-builder
 fi
@@ -9,13 +12,19 @@ fi
 python3 -m venv .venv-builder
 .venv-builder/bin/pip install -U setuptools pip wheel
 .venv-builder/bin/pip install oarepo-model-builder oarepo-model-builder-drafts
+.venv-builder/bin/pip install pytest-invenio
 
 BUILDER=.venv-builder/bin/oarepo-compile-model
-MODEL_NAME=model_record
+
+if [ -d built_tests ] ; then
+    rm -rf built_tests
+fi
+
+mkdir built_tests
 
 if true ; then
     test -d model && rm -rf model
-    ${BUILDER} tests/${MODEL_NAME}.yaml --output-directory model -vvv --profile record,draft
+    ${BUILDER} tests/model_record.yaml --output-directory built_tests/model -vvv --profile record,draft
 fi
 
 if [ -d .venv-tests ] ; then
@@ -26,7 +35,8 @@ python3 -m venv .venv-tests
 source .venv-tests/bin/activate
 
 pip install -U setuptools pip wheel
-pip install -e model
-pip install -e ".[tests]"
+pip install "oarepo>=$OAREPO_VERSION,<$OAREPO_VERSION_MAX"
+pip install -e "built_tests/model[tests]"
+pip install pytest-invenio
 
 pytest tests
