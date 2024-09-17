@@ -52,7 +52,7 @@ def faker_seed():
 def sample_record(faker):
     return {
         "metadata": {
-            "title": faker.word(),
+            "title": faker.word(ext_word_list=["abc", "def", "ghi", "jkl"]),
             "status": faker.word(ext_word_list=["ok", "skipped"]),
         }
     }
