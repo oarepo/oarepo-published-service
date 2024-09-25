@@ -4,9 +4,9 @@ on:
   workflow_call:
     inputs:
       oarepo:
-        description: OARepo version (11, 12, ...)
+        description: OARepo version (12, ...)
         required: true
-        default: 11
+        default: 12
         type: string
 
 env:
@@ -43,7 +43,7 @@ jobs:
         uses: ankane/setup-opensearch@v1
         with:
           plugins: analysis-icu
-
+          opensearch-version: 2.13.0
       - name: Start Redis
         uses: supercharge/redis-github-action@1.7.0
         with:

@@ -165,3 +165,5 @@ model
 .venv-tests
 
 .vscode
+
+built_tests/

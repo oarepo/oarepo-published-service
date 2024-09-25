@@ -1,4 +1,5 @@
-from invenio_records_resources.services import RecordService
+from invenio_rdm_records.services.services import RDMRecordService
+# from invenio_records_resources.services import RecordService
 from invenio_records_resources.services.uow import (
     RecordCommitOp,
     unit_of_work
@@ -6,7 +7,7 @@ from invenio_records_resources.services.uow import (
 
 from oarepo_published_service.services import PublishedServiceConfig
 
-class PublishedService(RecordService):
+class PublishedService(RDMRecordService):
     def __init__(self, config: PublishedServiceConfig):
         self.config = config
     
