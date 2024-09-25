@@ -42,7 +42,7 @@ def test_update(published_service, sample_record, search_clear):
 def test_search(published_service, sample_record, search_clear):
     published_service.create(system_identity, sample_record)
     
-    search_params = { "title": sample_record["metadata"]["title"] }
+    search_params = { "status": sample_record["metadata"]["status"] }
     search_result = published_service.search(system_identity, params=search_params)
     
     assert search_result is not None
