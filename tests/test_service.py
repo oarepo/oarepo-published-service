@@ -30,7 +30,7 @@ def test_read(published_service, sample_record, search_clear):
     assert created.id == read.id
     assert created["metadata"] == read["metadata"]
     
-def test_update(published_service, sample_record, search_clear):
+def test_update(published_service, search_clear, sample_record):
     created = published_service.create(system_identity, sample_record)
     modified_record = sample_record
     modified_record["metadata"]["title"] = "Novy nazov"
